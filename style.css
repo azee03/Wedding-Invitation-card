@@ -2548,4 +2548,47 @@ body.page-leaving .invitation-paper {
 }
 
 
+/* Mobile: add spacing between wedding detail boxes */
+@media (max-width: 650px) {
+  .event-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 8px 0;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .event-item {
+    min-width: 0;
+    padding: 18px 10px;
+    border: 1px solid rgba(134, 100, 47, 0.28);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .event-item + .event-item {
+    border-left: 1px solid rgba(134, 100, 47, 0.28);
+    border-top: 1px solid rgba(134, 100, 47, 0.28);
+  }
+
+  /* Make the venue box span the full width */
+  .event-item--venue {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Extra spacing on very narrow phones */
+@media (max-width: 360px) {
+  .event-grid {
+    gap: 9px;
+  }
+
+  .event-item {
+    padding: 15px 7px;
+  }
+}
+
+
+
 
