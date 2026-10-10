@@ -1,4 +1,3 @@
-
 "use strict";
 
 /* =========================================
@@ -8,48 +7,36 @@
 const animationStyles = document.createElement("style");
 
 animationStyles.textContent = `
-  /* Main seal: gentle floating motion */
   .cover-page .seal-link {
     position: relative;
     isolation: isolate;
     animation: sealFloat 3s ease-in-out infinite;
-    transition:
-      transform 0.4s ease,
-      filter 0.4s ease;
+    transition: transform 0.4s ease, filter 0.4s ease;
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* Golden ambient glow around the seal */
   .cover-page .seal-link::before {
     content: "";
     position: absolute;
     inset: -14px;
     border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(255, 215, 125, 0.34) 0%,
-      rgba(218, 165, 65, 0.18) 45%,
-      transparent 72%
-    );
+    background: radial-gradient(circle, rgba(255, 215, 125, 0.34) 0%, rgba(218, 165, 65, 0.18) 45%, transparent 72%);
     z-index: -1;
     opacity: 0.7;
     animation: sealGlow 2.4s ease-in-out infinite;
     pointer-events: none;
   }
 
-  /* Outer gold ring */
   .cover-page .seal-ring--outer {
     animation: outerRingGlow 2.4s ease-in-out infinite;
     transition: filter 0.4s ease;
   }
 
-  /* Inner gold ring */
   .cover-page .seal-ring--inner {
     animation: innerRingGlow 2.4s ease-in-out infinite;
     transition: filter 0.4s ease;
   }
 
-  /* M & T monogram */
   .cover-page .seal-monogram {
     display: inline-block;
     transform-origin: center;
@@ -57,7 +44,6 @@ animationStyles.textContent = `
     transition: transform 0.35s ease;
   }
 
-  /* Decorative stars */
   .cover-page .seal-stars {
     animation: starTwinkle 2s ease-in-out infinite;
     transform-origin: center;
@@ -67,13 +53,11 @@ animationStyles.textContent = `
     animation-delay: 1s;
   }
 
-  /* Instruction: Tap the seal to open */
   .cover-page .cover-tap {
     animation: instructionPulse 2s ease-in-out infinite;
     transition: color 0.3s ease;
   }
 
-  /* Animated dots on both sides of the instruction */
   .cover-page .tap-dot {
     display: inline-block;
     animation: dotPulse 1.5s ease-in-out infinite;
@@ -84,7 +68,6 @@ animationStyles.textContent = `
     animation-delay: 0.75s;
   }
 
-  /* Hover effect for desktop visitors */
   @media (hover: hover) and (pointer: fine) {
     .cover-page .seal-link:hover {
       transform: translateY(-4px) scale(1.045);
@@ -112,7 +95,6 @@ animationStyles.textContent = `
     }
   }
 
-  /* Click feedback before opening the invitation */
   .cover-page .seal-link.seal-pressed {
     animation: sealPress 0.28s ease forwards;
     pointer-events: none;
@@ -132,7 +114,6 @@ animationStyles.textContent = `
     animation: instructionActive 0.28s ease forwards;
   }
 
-  /* Smooth cover exit */
   .cover-page.page-leaving .cover-card {
     animation: coverExit 0.35s ease forwards;
   }
@@ -142,111 +123,65 @@ animationStyles.textContent = `
     transition: opacity 0.2s ease;
   }
 
-  /* Keyframes */
   @keyframes sealFloat {
     0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-5px); }
+    50% { transform: translateY(-5px); }
   }
 
   @keyframes sealGlow {
-    0%, 100% {
-      opacity: 0.45;
-      transform: scale(0.96);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.07);
-    }
+    0%, 100% { opacity: 0.45; transform: scale(0.96); }
+    50% { opacity: 1; transform: scale(1.07); }
   }
 
   @keyframes outerRingGlow {
-    0%, 100% {
-      filter: drop-shadow(0 0 2px rgba(218, 165, 65, 0.3));
-    }
-    50% {
-      filter: drop-shadow(0 0 7px rgba(255, 215, 125, 0.85));
-    }
+    0%, 100% { filter: drop-shadow(0 0 2px rgba(218, 165, 65, 0.3)); }
+    50% { filter: drop-shadow(0 0 7px rgba(255, 215, 125, 0.85)); }
   }
 
   @keyframes innerRingGlow {
-    0%, 100% {
-      filter: drop-shadow(0 0 1px rgba(255, 215, 125, 0.25));
-    }
-    50% {
-      filter: drop-shadow(0 0 5px rgba(255, 215, 125, 0.75));
-    }
+    0%, 100% { filter: drop-shadow(0 0 1px rgba(255, 215, 125, 0.25)); }
+    50% { filter: drop-shadow(0 0 5px rgba(255, 215, 125, 0.75)); }
   }
 
   @keyframes monogramShine {
-    0%, 100% {
-      text-shadow: 0 0 2px rgba(255, 215, 125, 0.25);
-    }
-    50% {
-      text-shadow:
-        0 0 5px rgba(255, 215, 125, 0.65),
-        0 0 12px rgba(218, 165, 65, 0.35);
-    }
+    0%, 100% { text-shadow: 0 0 2px rgba(255, 215, 125, 0.25); }
+    50% { text-shadow: 0 0 5px rgba(255, 215, 125, 0.65), 0 0 12px rgba(218, 165, 65, 0.35); }
   }
 
   @keyframes starTwinkle {
-    0%, 100% {
-      opacity: 0.55;
-      transform: scale(0.85) rotate(0deg);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.2) rotate(45deg);
-    }
+    0%, 100% { opacity: 0.55; transform: scale(0.85) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(45deg); }
   }
 
   @keyframes instructionPulse {
-    0%, 100% {
-      opacity: 0.72;
-      transform: translateY(0);
-    }
-    50% {
-      opacity: 1;
-      transform: translateY(-2px);
-    }
+    0%, 100% { opacity: 0.72; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-2px); }
   }
 
   @keyframes dotPulse {
-    0%, 100% {
-      opacity: 0.4;
-      transform: scale(0.8);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.3);
-    }
+    0%, 100% { opacity: 0.4; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.3); }
   }
 
   @keyframes sealPress {
-    0%   { transform: scale(1); }
-    60%  { transform: scale(1.1); }
+    0% { transform: scale(1); }
+    60% { transform: scale(1.1); }
     100% { transform: scale(1.04); }
   }
 
   @keyframes pressedGlow {
     from { opacity: 0.7; transform: scale(1); }
-    to   { opacity: 1; transform: scale(1.25); }
+    to { opacity: 1; transform: scale(1.25); }
   }
 
   @keyframes instructionActive {
-    to {
-      opacity: 1;
-      transform: scale(1.04);
-    }
+    to { opacity: 1; transform: scale(1.04); }
   }
 
   @keyframes coverExit {
-    to {
-      opacity: 0;
-      transform: scale(1.025);
-    }
+    to { opacity: 0; transform: scale(1.025); }
   }
 
-  /* Accessibility: respect reduced-motion preferences */
   @media (prefers-reduced-motion: reduce) {
     .cover-page .seal-link,
     .cover-page .seal-link::before,
@@ -273,7 +208,7 @@ document
   .querySelectorAll('a[href="invitation.html"], a[href="index.html"]')
   .forEach((link) => {
     link.addEventListener("click", (event) => {
-      // Preserve normal browser behavior for modified clicks.
+      // Preserve normal browser behavior for modified clicks and new tabs.
       if (
         event.button !== 0 ||
         event.metaKey ||
@@ -288,7 +223,6 @@ document
       const destination = link.getAttribute("href");
       if (!destination) return;
 
-      // Let the browser handle links to another website.
       if (
         link.origin !== window.location.origin ||
         link.hasAttribute("download")
@@ -297,31 +231,22 @@ document
       }
 
       event.preventDefault();
-
-      // Prevent double-clicks while the transition is running.
-      if (link.classList.contains("seal-pressed")) return;
-
       const prefersReducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
       ).matches;
 
       if (link.classList.contains("seal-link")) {
+        if (link.classList.contains("seal-pressed")) return;
         link.classList.add("seal-pressed");
 
         const instruction = document.querySelector(".cover-tap");
-        if (instruction) {
-          instruction.classList.add("instruction-active");
-        }
+        if (instruction) instruction.classList.add("instruction-active");
       }
 
       document.body.classList.add("page-leaving");
-
-      window.setTimeout(
-        () => {
-          window.location.href = destination;
-        },
-        prefersReducedMotion ? 0 : 320
-      );
+      window.setTimeout(() => {
+        window.location.href = destination;
+      }, prefersReducedMotion ? 0 : 320);
     });
   });
 
@@ -334,9 +259,7 @@ const countdown = document.querySelector("[data-countdown]");
 
 if (countdown) {
   // 10 December 2026, 11:30 AM India Standard Time.
-  const weddingDate = new Date(
-    "2026-12-10T11:30:00+05:30"
-  ).getTime();
+  const weddingDate = new Date("2026-12-10T11:30:00+05:30").getTime();
 
   const fields = {
     days: countdown.querySelector("[data-days]"),
@@ -354,40 +277,19 @@ if (countdown) {
       });
 
       const heading = document.querySelector(".countdown-heading");
-
-      if (heading) {
-        heading.textContent = "The celebration day is here";
-      }
-
+      if (heading) heading.textContent = "The celebration day is here";
       return;
     }
 
     const days = Math.floor(remaining / 86400000);
-    const hours = Math.floor(
-      (remaining % 86400000) / 3600000
-    );
-    const minutes = Math.floor(
-      (remaining % 3600000) / 60000
-    );
-    const seconds = Math.floor(
-      (remaining % 60000) / 1000
-    );
+    const hours = Math.floor((remaining % 86400000) / 3600000);
+    const minutes = Math.floor((remaining % 3600000) / 60000);
+    const seconds = Math.floor((remaining % 60000) / 1000);
 
-    if (fields.days) {
-      fields.days.textContent = String(days).padStart(2, "0");
-    }
-
-    if (fields.hours) {
-      fields.hours.textContent = String(hours).padStart(2, "0");
-    }
-
-    if (fields.minutes) {
-      fields.minutes.textContent = String(minutes).padStart(2, "0");
-    }
-
-    if (fields.seconds) {
-      fields.seconds.textContent = String(seconds).padStart(2, "0");
-    }
+    if (fields.days) fields.days.textContent = String(days).padStart(2, "0");
+    if (fields.hours) fields.hours.textContent = String(hours).padStart(2, "0");
+    if (fields.minutes) fields.minutes.textContent = String(minutes).padStart(2, "0");
+    if (fields.seconds) fields.seconds.textContent = String(seconds).padStart(2, "0");
   };
 
   updateCountdown();
