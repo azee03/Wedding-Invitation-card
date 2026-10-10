@@ -2320,3 +2320,232 @@ body.page-leaving .invitation-paper {
 }
 
 
+/* =========================================
+   ELEGANT GOLDEN INVITATION ENHANCEMENTS
+   ========================================= */
+
+/* Rich burgundy background around the invitation */
+.invitation-page {
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(218, 177, 96, 0.17),
+      transparent 48%
+    ),
+    linear-gradient(
+      135deg,
+      #350711 0%,
+      #640d1c 48%,
+      #3d0912 100%
+    );
+}
+
+/* Champagne and antique-gold paper instead of plain white */
+.invitation-paper {
+  background: linear-gradient(
+    135deg,
+    #f5e7c6 0%,
+    #fff8e8 24%,
+    #f1dfb8 55%,
+    #fff6e2 78%,
+    #e9d3a4 100%
+  );
+}
+
+/* Warm, subtle golden gradient behind the invitation details */
+.invitation-content {
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(219, 183, 111, 0.20),
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      #f4e6c5 0%,
+      #fff8e9 25%,
+      #f8edD5 55%,
+      #fff9eb 78%,
+      #efdfbd 100%
+    );
+}
+
+/* Softer gold decorative borders */
+.paper-border {
+  border-color: rgba(172, 126, 48, 0.65);
+}
+
+.paper-border::after {
+  border-color: rgba(134, 100, 47, 0.28);
+}
+
+/* =========================================
+   BISMILLAH ON THE WEDDING PHOTOGRAPH
+   ========================================= */
+
+.invitation-hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-bismillah {
+  position: absolute;
+  z-index: 3;
+  top: 22px;
+  left: 12px;
+  right: 12px;
+
+  margin: 0;
+  padding: 5px 8px;
+
+  color: #fff0c5;
+  font-family: "Times New Roman", serif;
+  font-size: clamp(25px, 3.6vw, 37px);
+  line-height: 1.7;
+  text-align: center;
+
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.9),
+    0 0 16px rgba(0, 0, 0, 0.6);
+
+  pointer-events: none;
+}
+
+/* =========================================
+   SMALLER BACK-TO-COVER BUTTON
+   ========================================= */
+
+.back-link {
+  top: 23px;
+  left: 23px;
+
+  min-height: 29px;
+  padding: 5px 9px;
+  gap: 4px;
+
+  font-size: 11px;
+  line-height: 1.2;
+
+  border-color: rgba(234, 214, 160, 0.7);
+  background: rgba(53, 7, 17, 0.68);
+
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.16);
+}
+
+.back-link::before {
+  font-size: 12px;
+}
+
+/* =========================================
+   MOBILE OPTIMISATION
+   ========================================= */
+
+@media (max-width: 650px) {
+  .invitation-wrap {
+    padding: max(8px, env(safe-area-inset-top))
+             max(7px, env(safe-area-inset-right))
+             max(12px, env(safe-area-inset-bottom))
+             max(7px, env(safe-area-inset-left));
+  }
+
+  .invitation-paper {
+    border-radius: 2px;
+  }
+
+  .invitation-content {
+    padding: 25px 17px 27px;
+  }
+
+  .hero-bismillah {
+    top: 18px;
+    left: 9px;
+    right: 9px;
+
+    font-size: clamp(22px, 6.5vw, 30px);
+    line-height: 1.8;
+    padding: 3px 4px;
+  }
+
+  .back-link {
+    top: 16px;
+    left: 14px;
+
+    min-height: 27px;
+    padding: 4px 8px;
+    gap: 3px;
+
+    font-size: 10px;
+  }
+
+  .back-link::before {
+    font-size: 11px;
+  }
+
+  .hero-caption {
+    bottom: 15px;
+    left: 12px;
+    right: 12px;
+
+    font-size: 9px;
+    letter-spacing: 0.11em;
+    line-height: 1.6;
+  }
+
+  .bismillah {
+    font-size: 25px;
+  }
+
+  .translation {
+    font-size: 13px;
+  }
+
+  .event-grid {
+    gap: 0;
+  }
+
+  .event-item {
+    padding: 14px 8px;
+  }
+
+  .countdown {
+    gap: 5px;
+  }
+
+  .countdown div {
+    padding: 9px 2px;
+    background: rgba(255, 250, 235, 0.62);
+    border-color: rgba(153, 112, 47, 0.35);
+  }
+
+  .countdown strong {
+    font-size: clamp(18px, 5.5vw, 22px);
+  }
+}
+
+/* Extra-small phones */
+@media (max-width: 360px) {
+  .invitation-content {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .hero-bismillah {
+    top: 15px;
+    font-size: 21px;
+  }
+
+  .back-link {
+    top: 12px;
+    left: 11px;
+    padding: 4px 7px;
+    font-size: 9px;
+  }
+
+  .hero-caption {
+    font-size: 8px;
+    letter-spacing: 0.08em;
+  }
+}
+
+
+
