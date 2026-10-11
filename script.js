@@ -295,3 +295,105 @@ if (countdown) {
   updateCountdown();
   window.setInterval(updateCountdown, 1000);
 }
+
+/* =========================================
+   INVITATION BACKGROUND MUSIC
+   ========================================= */
+
+(() => {
+  const audio = document.getElementById("invitationMusic");
+  const button = document.getElementById("musicToggle");
+
+  // Run only on invitation.html.
+  if (!audio || !button) return;
+
+  const label = button.querySelector(".music-label");
+  const targetVolume = 0.5;
+
+  let fadeFrame = 0;
+  let attemptNumber = 0;
+
+  function updateButton(playing) {
+    button.classList.toggle("is-playing", playing);
+    button.setAttribute("aria-pressed", String(playing));
+    button.setAttribute(
+      "aria-label",
+      playing ? "Pause background music" : "Play background music"
+    );
+
+    if (label) {
+      label.textContent = playing ? "Pause music" : "Play music";
+    }
+  }
+
+  function fadeIn() {
+    if (fadeFrame) {
+      cancelAnimationFrame(fadeFrame);
+    }
+
+    const start = performance.now();
+    const duration = 2000;
+
+    function step(now) {
+      if (audio.paused) {
+        fadeFrame = 0;
+        return;
+      }
+
+      const progress = Math.min((now - start) / duration, 1);
+      audio.volume = targetVolume * progress;
+
+      if (progress < 1) {
+        fadeFrame = requestAnimationFrame(step);
+      } else {
+        fadeFrame = 0;
+      }
+    }
+
+    fadeFrame = requestAnimationFrame(step);
+  }
+
+  async function playMusic() {
+    const currentAttempt = ++attemptNumber;
+
+    try {
+      audio.volume = 0;
+      await audio.play();
+
+      // Ignore an old play request if the user has since paused.
+      if (currentAttempt !== attemptNumber) return;
+
+      updateButton(true);
+      fadeIn();
+    } catch (error) {
+      // Autoplay was blocked or the audio could not load.
+      updateButton(false);
+    }
+  }
+
+  function pauseMusic() {
+    attemptNumber++;
+
+    if (fadeFrame) {
+      cancelAnimationFrame(fadeFrame);
+      fadeFrame = 0;
+    }
+
+    audio.pause();
+    updateButton(false);
+  }
+
+  button.addEventListener("click", () => {
+    if (audio.paused) {
+      playMusic();
+    } else {
+      pauseMusic();
+    }
+  });
+
+  audio.addEventListener("play", () => updateButton(true));
+  audio.addEventListener("pause", () => updateButton(false));
+
+  // Automatically attempt playback when the invitation opens.
+  playMusic();
+})();
