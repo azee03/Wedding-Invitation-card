@@ -586,3 +586,134 @@ a:focus-visible { outline: 2px solid var(--gold-dark); outline-offset: 3px; }
   }
 }
 
+
+/* =========================================
+   INVITATION PAGE OPENING ANIMATION
+   Triggered when index.html opens invitation.html
+   ========================================= */
+
+/* The complete invitation gently appears */
+body.invitation-page:not(.page-leaving) .invitation-paper {
+  transform-origin: top center;
+  animation: weddingLetterOpen 850ms cubic-bezier(0.22, 0.75, 0.25, 1) both;
+}
+
+/* Wedding photo softly zooms into position */
+body.invitation-page:not(.page-leaving) .hero-image {
+  transform-origin: center center;
+  animation: weddingPhotoReveal 1.3s ease-out both;
+}
+
+/* Dark photo overlay appears gently */
+body.invitation-page:not(.page-leaving) .hero-overlay {
+  animation: weddingOverlayReveal 800ms ease-out both;
+}
+
+/* Invitation details rise into view */
+body.invitation-page:not(.page-leaving) .invitation-header {
+  animation: weddingDetailsReveal 650ms ease-out 180ms both;
+}
+
+body.invitation-page:not(.page-leaving) .couple-section {
+  animation: weddingDetailsReveal 650ms ease-out 300ms both;
+}
+
+body.invitation-page:not(.page-leaving) .insha-line {
+  animation: weddingDetailsReveal 550ms ease-out 400ms both;
+}
+
+body.invitation-page:not(.page-leaving) .event-grid {
+  animation: weddingDetailsReveal 650ms ease-out 450ms both;
+}
+
+body.invitation-page:not(.page-leaving) .countdown-section {
+  animation: weddingDetailsReveal 650ms ease-out 550ms both;
+}
+
+body.invitation-page:not(.page-leaving) .gathering-section {
+  animation: weddingDetailsReveal 650ms ease-out 650ms both;
+}
+
+body.invitation-page:not(.page-leaving) .invitation-footer {
+  animation: weddingDetailsReveal 650ms ease-out 750ms both;
+}
+
+/* Keyframes */
+
+@keyframes weddingLetterOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.975);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes weddingPhotoReveal {
+  0% {
+    opacity: 0.65;
+    transform: scale(1.09);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes weddingOverlayReveal {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes weddingDetailsReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* On short phone screens, keep the animation lightweight */
+@media (max-width: 650px) {
+  body.invitation-page:not(.page-leaving) .invitation-paper {
+    animation-duration: 650ms;
+  }
+
+  body.invitation-page:not(.page-leaving) .hero-image {
+    animation-duration: 900ms;
+  }
+}
+
+/* Respect visitors who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body.invitation-page .invitation-paper,
+  body.invitation-page .hero-image,
+  body.invitation-page .hero-overlay,
+  body.invitation-page .invitation-header,
+  body.invitation-page .couple-section,
+  body.invitation-page .insha-line,
+  body.invitation-page .event-grid,
+  body.invitation-page .countdown-section,
+  body.invitation-page .gathering-section,
+  body.invitation-page .invitation-footer {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+
